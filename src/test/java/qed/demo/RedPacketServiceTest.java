@@ -41,12 +41,13 @@ public class RedPacketServiceTest {
 
     @Before
     public void init() {
+        redisTemplate.delete(key);
         ValueOperations<String, RedPacket> strOps = redisTemplate.opsForValue();
         RedPacket redPacket = new RedPacket();
         redPacket.setUserId("0001");
-        redPacket.setTotalNum(10);
+        redPacket.setTotalNum(20);
         redPacket.setTotalMoney(1000);
-        redPacket.setSurplusNum(10);
+        redPacket.setSurplusNum(20);
         redPacket.setSurplusMoney(1000);
         strOps.set(key, redPacket);
     }
@@ -92,7 +93,7 @@ public class RedPacketServiceTest {
 
     @Test
     public void test2() throws Exception {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             User user = new User();
             user.setUserId("id" + i);
             user.setUn("hello" + i);
@@ -119,6 +120,7 @@ public class RedPacketServiceTest {
         @Override
         public void run() {
             Object result = redPacketService.cas(key, user);
+            log.debug("[result={}]", result);
             if (ObjectUtils.isEmpty(result)) {
                 synchronized (count) {
                     count++;

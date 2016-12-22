@@ -15,6 +15,7 @@ import qed.demo.redis.model.RedPacket;
 import qed.demo.redis.model.User;
 import qed.demo.util.RedPacketUtil;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -82,10 +83,7 @@ public class RedPacketService {
                         redPacket.getUserMap().put(user.getUserId(), user);
                         //更新redis
                         operations.opsForValue().set(key, redPacket);
-                        Object result = operations.exec();
-                        if (result == null) {
-                            return null;
-                        }
+                        return operations.exec();
                     } catch (Exception ex) {
 
                     }
