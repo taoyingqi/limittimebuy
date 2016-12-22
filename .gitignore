@@ -1,0 +1,18 @@
+# Dir
+target/
+.idea/
+.settings/
+upload/
+
+# Files
+*.class
+.project
+.classpath
+*.iml
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
