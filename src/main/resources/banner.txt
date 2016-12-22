@@ -1,0 +1,9 @@
+   ,--.   ,--.
+   \  /-~-\  /
+    )' a a `(
+   (  ,---.  )
+    `(_o_o_)'
+      )`-'(
+
+Spring Boot:${spring-boot.formatted-version}
+Project name:limit-buy-demo2

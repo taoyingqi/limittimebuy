@@ -1,0 +1,31 @@
+spring:
+  # REDIS (RedisProperties)
+  redis:
+    database: 2
+    host: localhost
+    password:
+    port: 6379
+    pool.max-idle: 8
+    pool.min-idle: 0
+    pool.max-active: 8
+    pool.max-wait: -1
+    #sentinel.master:
+    #sentinel.nodes:
+
+
+#######################
+#### http server   ####
+#######################
+server:
+  ip: localhost
+  port: 8183
+
+
+#######################
+#### LOG           ####
+#######################
+logging:
+  config: classpath:log4j2-dev.yml
+  level:
+    qed.demo: DEBUG
+
