@@ -85,7 +85,8 @@ public class RedPacketService {
                         operations.opsForValue().set(key, redPacket);
                         return operations.exec();
                     } catch (Exception ex) {
-
+                        log.error(ex.getMessage(), ex);
+//                        operations.discard();
                     }
                 }
             }
