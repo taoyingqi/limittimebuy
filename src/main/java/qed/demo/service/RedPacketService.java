@@ -35,6 +35,7 @@ public class RedPacketService {
             @Override
             public Object execute(RedisOperations operations) throws DataAccessException {
                 operations.watch(key);
+                operations.multi();
                 RedPacket redPacket = (RedPacket) operations.opsForValue().get(key);
                 if (redPacket.getUserMap().containsKey(user.getUserId())) {
                     return 1;
@@ -44,7 +45,6 @@ public class RedPacketService {
                 if (ObjectUtils.isEmpty(money)) {
                     return 2;
                 }
-                operations.multi();
                 redPacket.setSurplusNum(redPacket.getSurplusNum() - 1);
                 redPacket.setSurplusMoney(redPacket.getSurplusMoney() - money);
                 //设置用户的领取的金额
@@ -65,6 +65,7 @@ public class RedPacketService {
                 while(true) {
                     try {
                         operations.watch(key);
+                        operations.multi();
                         RedPacket redPacket = (RedPacket) operations.opsForValue().get(key);
                         if (redPacket.getUserMap().containsKey(user.getUserId())) {
                             return 1;
@@ -74,7 +75,6 @@ public class RedPacketService {
                         if (ObjectUtils.isEmpty(money)) {
                             return 2;
                         }
-                        operations.multi();
                         redPacket.setSurplusNum(redPacket.getSurplusNum() - 1);
                         redPacket.setSurplusMoney(redPacket.getSurplusMoney() - money);
                         //设置用户的领取的金额
